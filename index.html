@@ -138,25 +138,38 @@
       <!-- ════════════════════════════════════════ -->
       <!-- THE PIECE (Phase 4)                      -->
       <!-- ════════════════════════════════════════ -->
-      <section id="the-piece" aria-label="The Piece — Pinned Showcase">
-        <div class="piece-sticky">
-          <img class="piece-img" src="/assets/images/sculptural-ring.png" alt="Sculptural 18k gold ring with organic curves" />
+      <section id="the-piece" aria-label="The Piece — Pinned Video Showcase">
+        <!-- Full-screen video background, pinned by GSAP -->
+        <div class="piece-video-wrap">
+          <video
+            class="piece-video"
+            src="/assets/videos/8971886-uhd_3840_2160_25fps.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          ></video>
+          <!-- Subtle vignette to ensure text legibility -->
+          <div class="piece-video-overlay"></div>
         </div>
+
         <div class="piece-copy-track">
           
-          <div class="copy-block" data-index="1">
+          <div class="copy-block" data-align="right" data-index="1">
             <div class="copy-subtitle">01 / Material</div>
             <h3 class="copy-title">Cast in<br>solid 18k gold.</h3>
             <p class="copy-text">Sourced responsibly and smelted into a form that carries undeniable weight. It does not bend to the world; it commands its own space.</p>
           </div>
 
-          <div class="copy-block" data-index="2">
+          <div class="copy-block" data-align="left" data-index="2">
             <div class="copy-subtitle">02 / Craftsmanship</div>
             <h3 class="copy-title">Hand-finished<br>textures.</h3>
             <p class="copy-text">The surface bears the subtle marks of the artisan, brushed deeply to disperse light rather than merely reflecting it.</p>
           </div>
 
-          <div class="copy-block" data-index="3">
+          <div class="copy-block" data-align="right" data-index="3">
             <div class="copy-subtitle">03 / Form</div>
             <h3 class="copy-title">Organic<br>geometry.</h3>
             <p class="copy-text">Fluid curves meet sharp architectural lines, resulting in a silhouette that shifts dramatically from every viewing angle.</p>

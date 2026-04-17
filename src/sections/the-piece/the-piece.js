@@ -1,65 +1,102 @@
+/**
+ * KOVA JEWELRY — the-piece.js
+ * ─────────────────────────────────────────────
+ * Phase 4 Overhaul: Video pinned showcase.
+ * alternating copy blocks (Right -> Left -> Right)
+ */
+
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { splitReveal, bgColorTween } from '../../js/utils.js'
 
 export function initThePiece() {
   const section = document.querySelector('#the-piece')
   if (!section) return
 
-  const stickyEl = section.querySelector('.piece-sticky')
+  const videoWrap = section.querySelector('.piece-video-wrap')
+  const video = section.querySelector('.piece-video')
   const blocks = gsap.utils.toArray(section.querySelectorAll('.copy-block'))
-  const img = section.querySelector('.piece-img')
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (prefersReducedMotion) {
-    gsap.set(blocks, { autoAlpha: 1 })
-    return
-  }
+  /* ─────────────────────────────────────────────
+     1. COLOR TRANSITION (Cream -> Obsidian)
+     Smoothly darkens the background as we enter the section.
+     ───────────────────────────────────────────── */
+  bgColorTween(
+    { bg: '#f0ede5', text: '#0c0c12' }, // from Philosophy (Cream)
+    { bg: '#0c0c12', text: '#f0ede5' }, // to The Piece (Obsidian)
+    { 
+      trigger: section, 
+      start: 'top 80%', 
+      end: 'top 20%', 
+      scrub: true 
+    }
+  )
 
-  // 1. Pin the jewelry image to the center of the viewport
-  // It will unpin once the bottom of `#the-piece` hits the bottom of the viewport
+  /* ─────────────────────────────────────────────
+     2. PINNING & SCROLL LOGIC
+     Pins the video background while text scrolls over.
+     ───────────────────────────────────────────── */
   ScrollTrigger.create({
     trigger: section,
     start: 'top top',
     end: 'bottom bottom',
-    pin: stickyEl,
+    pin: videoWrap,
     scrub: true,
-    anticipatePin: 1,
+    anticipatePin: 1
   })
 
-  // 2. Slow rotation of the jewellery image across the section's scroll
-  gsap.fromTo(img, 
-    { rotation: 0 },
-    {
-      rotation: 4,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5 // slight lag for breathing feel
-      }
-    }
-  )
+  // Play/Pause video based on viewport visibility for performance
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top bottom',
+    end: 'bottom top',
+    onEnter: () => video.play(),
+    onEnterBack: () => video.play(),
+    onLeave: () => video.pause(),
+    onLeaveBack: () => video.pause()
+  })
 
-  // 3. Fade in/out for each copy block as it enters the centre vertical area
-  blocks.forEach((block) => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: block,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: true,
+  /* ─────────────────────────────────────────────
+     3. TEXT REVEALS (Alternating)
+     Staggered masked line reveals.
+     ───────────────────────────────────────────── */
+  blocks.forEach((block, i) => {
+    // 3.1 Fade in/out the block container
+    gsap.fromTo(block, 
+      { autoAlpha: 0, y: 100 },
+      { 
+        autoAlpha: 1, 
+        y: 0, 
+        duration: 1,
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: true,
+          toggleActions: 'play reverse play reverse'
+        }
       }
-    })
-
-    // Fade in and slide up
-    tl.fromTo(block, 
-      { autoAlpha: 0, y: 50 }, 
-      { autoAlpha: 1, y: 0, duration: 0.3 }
     )
-    // Hold visibility
-    .to(block, { autoAlpha: 1, duration: 0.4 })
-    // Fade out and slide up further
-    .to(block, { autoAlpha: 0, y: -50, duration: 0.3 })
+
+    // 3.2 Masked line staggers for the text inside
+    // Using splitReveal helper from utils.js
+    const title = block.querySelector('.copy-title')
+    const text = block.querySelector('.copy-text')
+
+    if (title) {
+      splitReveal(title, {
+        trigger: block,
+        start: 'top 75%',
+        toggleActions: 'play none none reverse'
+      })
+    }
+
+    if (text) {
+      splitReveal(text, {
+        trigger: block,
+        start: 'top 70%',
+        toggleActions: 'play none none reverse'
+      }, { delay: 0.1 })
+    }
   })
 }

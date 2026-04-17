@@ -1,56 +1,74 @@
 /* ════════════════════════════════════════
-   THE PIECE (PHASE 4)
-   Pinned showcase section with overlapping scroll copy
+   THE PIECE (PHASE 4 OVERHAUL)
+   Pinned video showcase with alternating scroll copy
    ════════════════════════════════════════ */
 
 #the-piece {
   position: relative;
   width: 100vw;
-  height: 400vh; /* 300vh for sections + 100vh for base */
-  background-color: var(--cream);
-  color: var(--obsidian);
-  display: flex;
-  justify-content: space-between;
+  height: 250vh; /* Balanced for 3 copy blocks: ~80vh per beat */
+  background-color: var(--obsidian);
+  color: var(--cream);
+  overflow: hidden;
 }
 
-/* Left side pinning container */
-.piece-sticky {
-  width: 50vw;
+/* 1. Video Container (Full screen, pinned via JS) */
+.piece-video-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* GSAP handles pinning */
+  z-index: 1;
+  overflow: hidden;
 }
 
-.piece-img {
-  width: 70%;
-  max-width: 500px;
-  max-height: 80vh;
-  object-fit: contain;
-  /* Optional soft shadow for the jewelry depth */
-  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.4));
-  transform-origin: center;
+.piece-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Subtle darkening to help text pop */
 }
 
-/* Right side copy track that scrolls normally */
+/* Subtle vignettes to protect text on both sides */
+.piece-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+
+/* 2. Copy Track (Scrolls over the pinned video) */
 .piece-copy-track {
-  width: 50vw;
-  display: flex;
-  flex-direction: column;
-  padding-right: 8vw;
-  box-sizing: border-box;
-  padding-top: 100vh; /* push content down to start tracking after fully in view */
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  /* Starting point: push first block slightly down so it enters after pinning starts */
+  padding-top: 40vh; 
 }
 
 .copy-block {
-  height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Hidden by default, GSAP will handle autoAlpha */
+  box-sizing: border-box;
+  padding: 0 8vw;
+  /* Initial hidden state, handles by GSAP */
   opacity: 0;
   visibility: hidden;
+  margin-bottom: 20vh;
+}
+
+/* Alternating Alignment */
+.copy-block[data-align="right"] {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.copy-block[data-align="left"] {
+  align-items: flex-start;
+  text-align: left;
 }
 
 .copy-subtitle {
@@ -59,54 +77,47 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 2rem;
-  opacity: 0.5;
+  color: var(--gold); /* Highlight subtitle in gold on dark bg */
+  opacity: 0.9;
 }
 
 .copy-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 400;
+  font-size: 3.5rem;
+  font-weight: 300;
   margin-bottom: 1.5rem;
   line-height: 1.1;
+  color: var(--cream);
+  max-width: 600px;
 }
 
 .copy-text {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
-  opacity: 0.75;
-  max-width: 420px;
+  opacity: 0.7;
+  max-width: 450px;
+  color: var(--cream);
 }
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
   #the-piece {
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  .piece-sticky {
-    width: 100vw;
-    height: 50vh;
-  }
-
-  .piece-img {
-    height: 100%;
-    max-height: none;
-    width: auto;
-  }
-
-  .piece-copy-track {
-    width: 100vw;
-    padding: 0 5vw;
-    padding-top: 0vh; /* Disable top padding for mobile stacking since JS handles pinning */
+    height: 120vh; /* Shorter for mobile */
   }
 
   .copy-block {
-    height: 80vh; /* Reduced height per block on mobile */
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 10vw;
+    min-height: 60vh;
   }
 
   .copy-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .copy-text {
+    font-size: 1rem;
   }
 }
