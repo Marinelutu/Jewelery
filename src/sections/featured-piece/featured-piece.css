@@ -1,0 +1,113 @@
+/* ============================================
+   KOVA JEWELRY — FEATURED PIECE (Phase 5)
+   ============================================ */
+
+#featured-piece {
+  position: relative;
+  width: 100%;
+  padding-block: calc(var(--section-pad-y) * 1.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.featured-card {
+  position: relative;
+  width: 90%;
+  max-width: 1400px;
+  height: 85vh;
+  margin: 0 auto;
+  overflow: hidden;
+  /* Starting clip-path will be applied and animated by GSAP */
+  clip-path: inset(8% 4%);
+}
+
+.featured-img-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.featured-img {
+  width: 100%;
+  height: calc(100% + 80px); /* Space for parallax y: -40px to 40px */
+  object-fit: cover;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  will-change: transform;
+}
+
+/* Gradient overlay for text readability */
+.featured-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 12, 18, 0.7), rgba(12, 12, 18, 0.1));
+}
+
+.featured-copy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+}
+
+.featured-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-weight: var(--weight-light);
+  line-height: 1;
+  color: #f0ede5; /* forcing cream so it's always visible on dark bg */
+  margin-bottom: var(--space-4);
+  text-transform: none;
+}
+
+.featured-meta {
+  display: flex;
+  gap: var(--space-8);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: var(--space-10);
+}
+
+.meta-item {
+  display: block;
+}
+
+.featured-cta {
+  border-color: #f0ede5;
+  color: #f0ede5;
+}
+
+.featured-cta:hover {
+  background: #f0ede5;
+  color: var(--obsidian);
+}
+
+.featured-cta svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1;
+  fill: none;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.featured-cta:hover svg {
+  transform: translateX(4px);
+}

@@ -15,6 +15,7 @@ import { initNav }        from './nav/nav.js'
 import { initHero }       from './hero/hero.js'
 import { initPhilosophy } from './philosophy/philosophy.js'
 import { initThePiece }   from './the-piece/the-piece.js'
+import { initFeaturedPiece } from './featured-piece/featured-piece.js'
 
 export function initSections() {
   initPreloader()
@@ -22,5 +23,6 @@ export function initSections() {
   initHero()
   initPhilosophy()
   initThePiece()
-  console.log('[sections] Phase 4 ✓ — The Piece registered')
+  initFeaturedPiece()
+  console.log('[sections] Phase 5 ✓ — Featured Piece registered')
 }
