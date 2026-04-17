@@ -1,0 +1,156 @@
+/* ════════════════════════════════════════════════════════════
+   PHASE 9C: FOOTER — "Curtain Reveal"
+   Footer sits position:fixed behind the email-section.
+   As email scrolls up, footer reveals like a curtain lift.
+   ════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 80vh;
+  z-index: 1;
+  background-color: var(--obsidian);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+/* ── FOOTER INNER ── */
+.footer-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8vh;
+}
+
+/* ── FOOTER LOGO ── */
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-widest);
+  color: var(--gold);
+  line-height: 1;
+  animation: footer-pulse 4s ease-in-out infinite;
+}
+
+@keyframes footer-pulse {
+  0%,   100% { transform: scale(1.0);  }
+  50%        { transform: scale(1.02); }
+}
+
+/* ── FOOTER NAV ── */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+}
+
+.footer-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  position: relative;
+  transition: color var(--duration-fast) var(--ease-out);
+  /* Initial state handled by JS to avoid flash or stuck states */
+}
+
+.footer-link:hover {
+  color: var(--gold);
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── FOOTER DIVIDER ── */
+.footer-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.3;
+}
+
+/* ── FOOTER BOTTOM ── */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.footer-social-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  opacity: 0.5;
+  transition: opacity var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+}
+
+.footer-social-link:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  opacity: 0.3;
+  max-width: none;
+}
+
+/* ── SPACER: gives the footer room to be revealed ── */
+.footer-spacer {
+  height: 80vh;
+  position: relative;
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════ */
+/* RESPONSIVE                              */
+/* ════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .footer-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .site-footer {
+    min-height: 70vh;
+    padding: var(--space-16) var(--space-6);
+  }
+}

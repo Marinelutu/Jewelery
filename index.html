@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="/src/sections/featured-piece/featured-piece.css" />
     <link rel="stylesheet" href="/src/sections/collections/collections.css" />
     <link rel="stylesheet" href="/src/sections/editorial/editorial.css" />
+    <link rel="stylesheet" href="/src/sections/process/process.css" />
+    <link rel="stylesheet" href="/src/sections/email-capture/email-capture.css" />
+    <link rel="stylesheet" href="/src/sections/footer/footer.css" />
   </head>
   <body>
 
@@ -324,7 +327,117 @@
         </div>
       </section>
 
+      <!-- ════════════════════════════════════════ -->
+      <!-- PROCESS (Phase 9A)                      -->
+      <!-- ════════════════════════════════════════ -->
+      <section id="process" class="process-section" aria-label="Our Process">
+        <div class="process-header">
+          <h2 class="process-title">The Process.</h2>
+          <p class="process-subtitle">From concept to creation — three deliberate stages.</p>
+        </div>
+
+        <div class="process-steps">
+          <!-- Gold connecting line -->
+          <div class="process-line"></div>
+
+          <!-- Step 1: Sketch -->
+          <div class="process-step" data-step="1">
+            <div class="step-number">01</div>
+            <div class="step-img-wrap">
+              <img class="step-img" src="/assets/images/process-sketch.png" alt="Jewelry design sketching process">
+            </div>
+            <div class="step-label">01 — Sketch</div>
+            <h3 class="step-title">Drawing<br>the form.</h3>
+            <p class="step-desc">Every piece begins as a line on paper — fluid, instinctive strokes that search for the balance between organic form and architectural precision.</p>
+          </div>
+
+          <!-- Step 2: Cast -->
+          <div class="process-step" data-step="2">
+            <div class="step-number">02</div>
+            <div class="step-img-wrap">
+              <img class="step-img" src="/assets/images/process-cast.png" alt="Gold casting in the atelier">
+            </div>
+            <div class="step-label">02 — Cast</div>
+            <h3 class="step-title">Forging<br>in fire.</h3>
+            <p class="step-desc">Responsibly sourced 18k gold is melted and cast using the lost-wax method, transforming liquid metal into the skeleton of a sculpture.</p>
+          </div>
+
+          <!-- Step 3: Finish -->
+          <div class="process-step" data-step="3">
+            <div class="step-number">03</div>
+            <div class="step-img-wrap">
+              <img class="step-img" src="/assets/images/process-finish.png" alt="Finished sculptural gold ring">
+            </div>
+            <div class="step-label">03 — Finish</div>
+            <h3 class="step-title">Refining<br>the soul.</h3>
+            <p class="step-desc">Each surface is hand-finished — brushed, polished, or textured — until it catches light with the quiet confidence of something truly considered.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- EMAIL CAPTURE (Phase 9B)                -->
+      <!-- ════════════════════════════════════════ -->
+      <section id="email-capture" class="email-section" aria-label="Subscribe to KOVA">
+        <div class="email-container">
+          <h2 class="email-title">Stay in the<br>inner circle.</h2>
+          <p class="email-desc">Be the first to see new pieces, private previews, and stories from the atelier. No noise — only what matters.</p>
+          <form class="email-form" id="email-signup-form">
+            <div class="email-input-wrap">
+              <input
+                type="email"
+                class="email-input"
+                id="email-input-field"
+                placeholder="Your email address"
+                required
+                autocomplete="email"
+                aria-label="Email address"
+              >
+              <div class="email-underline"></div>
+            </div>
+            <button type="submit" class="email-submit" id="email-submit-btn" data-magnetic>Subscribe</button>
+          </form>
+          <p class="email-privacy">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+      </section>
+
+      <!-- FOOTER SPACER — provides scroll room for curtain reveal -->
+      <div class="footer-spacer" aria-hidden="true"></div>
+
     </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- FOOTER (Phase 9C — fixed, curtain reveal) -->
+    <!-- ════════════════════════════════════════ -->
+    <footer class="site-footer" id="site-footer" aria-label="Footer">
+      <div class="footer-inner">
+
+        <!-- Pulsing KOVA logo -->
+        <div class="footer-logo">KOVA</div>
+
+        <!-- Navigation links -->
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="#collections" class="footer-link" data-magnetic>Collections</a>
+          <a href="#philosophy" class="footer-link" data-magnetic>Philosophy</a>
+          <a href="#process" class="footer-link" data-magnetic>Atelier</a>
+          <a href="#the-piece" class="footer-link" data-magnetic>Signature</a>
+          <a href="#email-capture" class="footer-link" data-magnetic>Contact</a>
+        </nav>
+
+        <!-- Divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+          <div class="footer-social">
+            <a href="#" class="footer-social-link">Instagram</a>
+            <a href="#" class="footer-social-link">Pinterest</a>
+            <a href="#" class="footer-social-link">LinkedIn</a>
+          </div>
+          <p class="footer-copy">&copy; 2026 KOVA Jewelry. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- JS Entry -->
     <script type="module" src="/src/js/main.js"></script>

@@ -11,7 +11,7 @@ body {
   font-weight:      var(--weight-regular);
   line-height:      var(--leading-normal);
   color:            var(--text-color);
-  background-color: var(--bg-color);
+  background-color: var(--obsidian); /* Fixed base background */
   overflow-x:       hidden;
   cursor:           none; /* Replaced by custom cursor */
 }
@@ -47,6 +47,19 @@ html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/* ── APP SHELL — creates stacking context ── */
+#kova-app {
+  position: relative;
+  z-index: 2;
+  /* background must be transparent to allow the reveal at the bottom */
+}
+
+/* ── SECTION BASE — ensured opacity ── */
+section {
+  background-color: var(--bg-color);
+  transition: background-color 0.4s ease; /* subtle transition when theme changes */
 }
 
 /* ── SHARED LAYOUT UTILITIES ── */

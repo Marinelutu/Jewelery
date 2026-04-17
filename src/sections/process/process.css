@@ -1,0 +1,163 @@
+/* ════════════════════════════════════════════════════════════
+   PHASE 9A: PROCESS — "Sketch → Cast → Finish"
+   3-step numbered process with clip-path wipe reveals
+   and a gold connecting line between steps.
+   ════════════════════════════════════════════════════════════ */
+
+.process-section {
+  position: relative;
+  width: 100%;
+  padding: 18vh var(--section-pad-x) 14vh;
+  background-color: var(--obsidian);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+/* ── SECTION HEADER ── */
+.process-header {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.process-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  color: var(--cream);
+}
+
+.process-subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-top: var(--space-6);
+  max-width: none;
+}
+
+/* ── STEPS CONTAINER ── */
+.process-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ── GOLD CONNECTING LINE ── */
+.process-line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── INDIVIDUAL STEP ── */
+.process-step {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1rem, 2vw, 2.5rem);
+  text-align: center;
+}
+
+/* Step number badge */
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-light);
+  color: var(--gold);
+  margin-bottom: var(--space-8);
+  position: relative;
+}
+
+/* ── STEP IMAGE ── */
+.step-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: var(--space-8);
+  /* clip-path starts hidden for JS reveal */
+  clip-path: inset(0 100% 0 0);
+}
+
+.step-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ── STEP COPY ── */
+.step-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-snug);
+  color: var(--cream);
+  margin-bottom: var(--space-4);
+}
+
+.step-desc {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--cream-muted);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════════════════ */
+/* RESPONSIVE                              */
+/* ════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .process-steps {
+    flex-direction: column;
+    gap: 8vh;
+    align-items: center;
+  }
+
+  .process-step {
+    max-width: 440px;
+    width: 100%;
+  }
+
+  .process-line {
+    /* On mobile: vertical line instead */
+    top: 5%;
+    bottom: 5%;
+    left: 50%;
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+}
