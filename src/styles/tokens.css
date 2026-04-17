@@ -1,0 +1,111 @@
+/* ============================================
+   KOVA JEWELRY — DESIGN TOKENS
+   Single source of truth for all brand values.
+   Every colour, size, and timing used across
+   the site must reference a token defined here.
+   ============================================ */
+
+:root {
+
+  /* ── COLOUR PALETTE ── */
+  --obsidian:       #0c0c12;    /* Primary dark — hero, footer bg */
+  --obsidian-mid:   #16161f;    /* Slightly lighter dark for surfaces */
+  --obsidian-soft:  #242432;    /* Hover states, cards on dark bg */
+  --cream:          #f0ede5;    /* Primary light — philosophy section */
+  --cream-muted:    #e2ddd3;    /* Borders on light bg */
+  --gold:           #c9a84c;    /* Accent — underlines, icons, highlights */
+  --gold-bright:    #e3c06e;    /* Hover state for gold elements */
+  --champagne:      #e8d5b0;    /* Secondary accent — editorial section */
+  --white:          #ffffff;
+  --black:          #000000;
+
+  /* ── DYNAMIC BG (tweened by GSAP in JS) ── */
+  --bg-color:       var(--obsidian);
+  --text-color:     var(--cream);
+
+  /* ── TYPOGRAPHY ── */
+  --font-serif:     'Cormorant Garamond', Georgia, serif;
+  --font-sans:      'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Type Scale (fluid, clamp-based) */
+  --text-xs:        clamp(0.75rem,  1vw,    0.875rem);   /* 12–14px */
+  --text-sm:        clamp(0.875rem, 1.2vw,  1rem);       /* 14–16px */
+  --text-base:      clamp(1rem,     1.4vw,  1.125rem);   /* 16–18px */
+  --text-md:        clamp(1.125rem, 1.6vw,  1.375rem);   /* 18–22px */
+  --text-lg:        clamp(1.375rem, 2vw,    1.75rem);    /* 22–28px */
+  --text-xl:        clamp(1.75rem,  3vw,    2.5rem);     /* 28–40px */
+  --text-2xl:       clamp(2.5rem,   5vw,    4rem);       /* 40–64px */
+  --text-3xl:       clamp(4rem,     8vw,    7rem);       /* 64–112px */
+  --text-hero:      clamp(5rem,    11vw,   10rem);       /* 80–160px */
+
+  /* Font Weights */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+
+  /* Line Heights */
+  --leading-tight:  0.95;
+  --leading-snug:   1.1;
+  --leading-normal: 1.5;
+  --leading-loose:  1.75;
+
+  /* Letter Spacing */
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.1em;
+  --tracking-widest:  0.2em;
+
+  /* ── SPACING ── */
+  --space-1:   0.25rem;    /*  4px */
+  --space-2:   0.5rem;     /*  8px */
+  --space-3:   0.75rem;    /* 12px */
+  --space-4:   1rem;       /* 16px */
+  --space-5:   1.25rem;    /* 20px */
+  --space-6:   1.5rem;     /* 24px */
+  --space-8:   2rem;       /* 32px */
+  --space-10:  2.5rem;     /* 40px */
+  --space-12:  3rem;       /* 48px */
+  --space-16:  4rem;       /* 64px */
+  --space-20:  5rem;       /* 80px */
+  --space-24:  6rem;       /* 96px */
+  --space-32:  8rem;       /* 128px */
+  --space-40:  10rem;      /* 160px */
+  --space-64:  16rem;      /* 256px */
+
+  /* Section-level vertical padding */
+  --section-pad-y:  clamp(5rem, 10vw, 10rem);
+  --section-pad-x:  clamp(1.5rem, 6vw, 6rem);
+
+  /* ── LAYOUT ── */
+  --container-max:  1440px;
+  --grid-cols:      12;
+  --grid-gap:       clamp(1rem, 2vw, 2rem);
+
+  /* ── Z-INDEX LAYERS ── */
+  --z-base:         1;
+  --z-content:      10;
+  --z-overlay:      50;
+  --z-nav:          100;
+  --z-preloader:    500;
+  --z-cursor:       1000;
+
+  /* ── BORDERS ── */
+  --radius-sm:      2px;
+  --radius-md:      6px;
+  --radius-lg:      12px;
+  --radius-pill:    9999px;
+  --border-thin:    1px solid;
+
+  /* ── TRANSITIONS (for non-GSAP CSS transitions) ── */
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.87, 0, 0.13, 1);
+  --duration-fast:  0.2s;
+  --duration-base:  0.4s;
+  --duration-slow:  0.8s;
+
+  /* ── CURSOR SIZES ── */
+  --cursor-dot-size:    8px;
+  --cursor-ring-size:   40px;
+  --cursor-ring-hover:  56px;
+  --cursor-ring-drag:   80px;
+}

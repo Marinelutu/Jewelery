@@ -1,0 +1,39 @@
+# ── Node ──────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ── Vite build output ─────────────────────────
+dist/
+dist-ssr/
+
+# ── Environment variables ─────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Editor / OS ───────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Logs ──────────────────────────────────────
+logs/
+*.log
+
+# ── Cache ─────────────────────────────────────
+.cache/
+.vite/
+.eslintcache
+*.tsbuildinfo

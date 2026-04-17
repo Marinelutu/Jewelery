@@ -1,0 +1,107 @@
+/* ============================================
+   KOVA JEWELRY — CUSTOM CURSOR STYLES
+   The cursor module owns all cursor DOM styles.
+   GSAP in cursor.js drives position & state.
+
+   Architecture:
+   - #cursor-dot   → 8px sharp centre dot
+   - #cursor-ring  → 40px lagging outer ring
+                     (lerped behind dot position)
+
+   States (class toggled by cursor.js):
+   - .is-hovering  → ring expands to --cursor-ring-hover
+   - .is-dragging  → ring expands with "DRAG" text
+   - .is-magnetic  → dot snaps; ring elongates slightly
+   ============================================ */
+
+#cursor-dot,
+#cursor-ring {
+  position:       fixed;
+  top:            0;
+  left:           0;
+  pointer-events: none;
+  z-index:        var(--z-cursor);
+  border-radius:  var(--radius-pill);
+  mix-blend-mode: difference; /* Inverts colour over content for visibility */
+  will-change:    transform;
+}
+
+/* ── DOT ── */
+#cursor-dot {
+  width:            var(--cursor-dot-size);
+  height:           var(--cursor-dot-size);
+  background-color: var(--white);
+  /* GSAP sets transform: translate(-50%, -50%) + position */
+  transform:        translate(-50%, -50%);
+}
+
+/* ── RING ── */
+#cursor-ring {
+  width:            var(--cursor-ring-size);
+  height:           var(--cursor-ring-size);
+  border:           1px solid rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  transform:        translate(-50%, -50%);
+  /* Transition for state changes NOT handled by GSAP */
+  transition:       border-color 0.3s var(--ease-out);
+}
+
+/* ── STATE: HOVERING (interactive element) ── */
+#cursor-ring.is-hovering {
+  border-color: rgba(201, 168, 76, 0.9); /* --gold */
+}
+
+/* ── STATE: DRAGGING (carousel zone) ── */
+#cursor-ring.is-dragging {
+  border-color: rgba(201, 168, 76, 0.9);
+  /* The "DRAG" text label is injected via ::after — 
+     positioned by JS adjusting ring size via CSS variable */
+}
+
+#cursor-ring::after {
+  content:          attr(data-label); /* JS sets data-label="DRAG" */
+  position:         absolute;
+  top:              50%;
+  left:             50%;
+  transform:        translate(-50%, -50%);
+  font-family:      var(--font-sans);
+  font-size:        9px;
+  font-weight:      var(--weight-medium);
+  letter-spacing:   var(--tracking-widest);
+  text-transform:   uppercase;
+  color:            var(--white);
+  white-space:      nowrap;
+  opacity:          0;
+  transition:       opacity 0.3s var(--ease-out);
+  mix-blend-mode:   normal; /* Reset from parent's difference */
+}
+
+#cursor-ring.is-dragging::after {
+  opacity: 1;
+}
+
+/* ── HIDE DEFAULT CURSOR EVERYWHERE ── */
+a,
+button,
+label,
+[role='button'],
+[tabindex] {
+  cursor: none;
+}
+
+/* ── MOBILE: show default cursor (no hover state on touch) ── */
+@media (hover: none) and (pointer: coarse) {
+  #cursor-dot,
+  #cursor-ring {
+    display: none;
+  }
+
+  body,
+  a,
+  button,
+  label,
+  [role='button'],
+  [tabindex] {
+    cursor: auto;
+  }
+}
