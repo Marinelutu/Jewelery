@@ -1,0 +1,93 @@
+/* src/sections/nav/nav.css */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-6) var(--section-pad-x);
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: padding var(--duration-base) var(--ease-out), 
+              background-color var(--duration-base) var(--ease-out), 
+              border-bottom var(--duration-base) var(--ease-out), 
+              backdrop-filter var(--duration-base);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.site-nav.is-scrolled {
+  padding: var(--space-4) var(--section-pad-x);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(12, 12, 18, 0.4);
+  border-bottom: 1px solid rgba(240, 237, 229, 0.05);
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--cream);
+  display: inline-block;
+  padding: var(--space-2);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--cream);
+  position: relative;
+  padding: var(--space-2) var(--space-2);
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--space-2);
+  right: var(--space-2);
+  height: 1px;
+  background-color: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-toggle {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: var(--space-2);
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-block;
+  }
+}

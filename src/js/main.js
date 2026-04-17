@@ -17,6 +17,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { initCursor } from './cursor.js'
+import { initSections } from '../sections/index.js'
 
 /* ─────────────────────────────────────────────
    1. REGISTER GSAP PLUGINS
@@ -76,6 +77,7 @@ ScrollTrigger.defaults({
    5. CUSTOM CURSOR
    ───────────────────────────────────────────── */
 initCursor()
+initSections()
 
 /* ─────────────────────────────────────────────
    6. DEV LOG — confirms stack is running

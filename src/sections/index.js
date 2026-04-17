@@ -15,7 +15,11 @@
  * For Phase 0, it's a stub.
  */
 
+import { initPreloader } from './preloader/preloader.js'
+import { initNav } from './nav/nav.js'
+
 export function initSections() {
-  // Stub — populated in Phase 1+
-  console.log('[sections] Registry initialised (stub)')
+  initPreloader()
+  initNav()
+  console.log('[sections] Registry initialised')
 }
