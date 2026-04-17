@@ -1,0 +1,112 @@
+/* ════════════════════════════════════════
+   THE PIECE (PHASE 4)
+   Pinned showcase section with overlapping scroll copy
+   ════════════════════════════════════════ */
+
+#the-piece {
+  position: relative;
+  width: 100vw;
+  height: 400vh; /* 300vh for sections + 100vh for base */
+  background-color: var(--cream);
+  color: var(--obsidian);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Left side pinning container */
+.piece-sticky {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* GSAP handles pinning */
+}
+
+.piece-img {
+  width: 70%;
+  max-width: 500px;
+  max-height: 80vh;
+  object-fit: contain;
+  /* Optional soft shadow for the jewelry depth */
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.4));
+  transform-origin: center;
+}
+
+/* Right side copy track that scrolls normally */
+.piece-copy-track {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  padding-right: 8vw;
+  box-sizing: border-box;
+  padding-top: 100vh; /* push content down to start tracking after fully in view */
+}
+
+.copy-block {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Hidden by default, GSAP will handle autoAlpha */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.copy-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+}
+
+.copy-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.copy-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.75;
+  max-width: 420px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  #the-piece {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .piece-sticky {
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .piece-img {
+    height: 100%;
+    max-height: none;
+    width: auto;
+  }
+
+  .piece-copy-track {
+    width: 100vw;
+    padding: 0 5vw;
+    padding-top: 0vh; /* Disable top padding for mobile stacking since JS handles pinning */
+  }
+
+  .copy-block {
+    height: 80vh; /* Reduced height per block on mobile */
+  }
+
+  .copy-title {
+    font-size: 2rem;
+  }
+}

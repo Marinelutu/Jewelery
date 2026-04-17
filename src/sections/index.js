@@ -14,11 +14,13 @@ import { initPreloader }  from './preloader/preloader.js'
 import { initNav }        from './nav/nav.js'
 import { initHero }       from './hero/hero.js'
 import { initPhilosophy } from './philosophy/philosophy.js'
+import { initThePiece }   from './the-piece/the-piece.js'
 
 export function initSections() {
   initPreloader()
   initNav()
   initHero()
   initPhilosophy()
-  console.log('[sections] Phase 3 ✓ — Philosophy registered')
+  initThePiece()
+  console.log('[sections] Phase 4 ✓ — The Piece registered')
 }
