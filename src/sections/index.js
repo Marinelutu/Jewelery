@@ -17,6 +17,7 @@ import { initPhilosophy } from './philosophy/philosophy.js'
 import { initThePiece }   from './the-piece/the-piece.js'
 import { initFeaturedPiece } from './featured-piece/featured-piece.js'
 import { initCollections } from './collections/collections.js'
+import { initEditorialGrid } from './editorial/editorial.js'
 
 export function initSections() {
   initPreloader()
@@ -26,5 +27,6 @@ export function initSections() {
   initThePiece()
   initFeaturedPiece()
   initCollections()
-  console.log('[sections] Phase 6 & 7 ✓ — Collections Carousels registered')
+  initEditorialGrid()
+  console.log('[sections] Phase 8 ✓ — Editorial Grid registered')
 }
