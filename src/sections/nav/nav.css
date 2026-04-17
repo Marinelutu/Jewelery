@@ -19,8 +19,8 @@
 
 .site-nav.is-scrolled {
   padding: var(--space-4) var(--section-pad-x);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   background-color: rgba(12, 12, 18, 0.4);
   border-bottom: 1px solid rgba(240, 237, 229, 0.05);
 }

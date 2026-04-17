@@ -7,6 +7,7 @@
     <meta property="og:title" content="KOVA Jewelry — Wear the Sculpture." />
     <meta property="og:description" content="Sculptural fine jewellery crafted for those who wear art." />
     <meta property="og:type" content="website" />
+    <!-- theme-color: supported by Chrome/Edge/Safari; ignored gracefully by Firefox -->
     <meta name="theme-color" content="#0c0c12" />
 
     <title>KOVA Jewelry — Wear the Sculpture.</title>
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="/src/styles/cursor.css" />
     <link rel="stylesheet" href="/src/sections/preloader/preloader.css" />
     <link rel="stylesheet" href="/src/sections/nav/nav.css" />
+    <link rel="stylesheet" href="/src/sections/hero/hero.css" />
   </head>
   <body>
 
@@ -66,7 +68,47 @@
         <button class="nav-toggle btn sr-only">Menu</button>
       </nav>
 
-      <!-- Sections will go here -->
+      <!-- ════════════════════════════════════════ -->
+      <!-- HERO (Phase 2)                           -->
+      <!-- ════════════════════════════════════════ -->
+      <section id="hero" aria-label="Hero — Wear the Sculpture">
+
+        <!-- Looping video background -->
+        <div class="hero-video-wrap">
+          <video
+            class="hero-video"
+            src="/assets/videos/hero-video.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <!-- playsinline is required for iOS Safari autoplay; Firefox ignores it safely -->
+          </video>
+        </div>
+
+        <!-- Copy block: lower-third -->
+        <div class="hero-copy">
+          <h1 class="hero-tagline">Wear the<br>sculpture.</h1>
+          <p class="hero-subtitle">Sculptural fine jewellery &mdash; crafted for those who wear art.</p>
+          <a href="#collections" class="hero-cta btn" data-magnetic id="hero-cta-explore">
+            <span>Explore Collections</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-hint" aria-hidden="true">
+          <div class="hero-scroll-line"></div>
+          <span>Scroll</span>
+        </div>
+
+      </section>
 
     </div>
 

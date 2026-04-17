@@ -1,0 +1,186 @@
+/* ═══════════════════════════════════════════════
+   KOVA — Hero Section (Phase 2)
+   Full-screen cinematic looping video backdrop
+   ═══════════════════════════════════════════════ */
+
+/* ── Section shell ── */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;  /* copy sits at lower-third */
+  background-color: var(--obsidian);
+}
+
+/* ── Video background ── */
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform-origin: center center;
+  /* GSAP will scrub scale from 1.1 → 1.0 */
+  will-change: transform;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+
+/* dark gradient vignette over video */
+.hero-video-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 12, 18, 0.15) 0%,
+    rgba(12, 12, 18, 0.0) 40%,
+    rgba(12, 12, 18, 0.55) 75%,
+    rgba(12, 12, 18, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* ── Copy block ── */
+.hero-copy {
+  position: relative;
+  z-index: 10;
+  padding: var(--space-xl) var(--space-xl) calc(var(--space-xl) * 1.5);
+  max-width: 820px;
+}
+
+/* tagline */
+.hero-tagline {
+  font-family: var(--font-editorial);
+  font-size: clamp(3rem, 6.5vw, 7rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-md);
+  /* Lines revealed via GSAP — start invisible */
+  visibility: hidden;
+}
+
+/* subtitle */
+.hero-subtitle {
+  font-family: var(--font-ui);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  opacity: 0;           /* GSAP will fade in */
+  margin-bottom: var(--space-lg);
+}
+
+/* CTA */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  border: 1px solid rgba(240, 237, 229, 0.35);
+  padding: 0.85rem 2rem;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;           /* GSAP will fade in */
+  transition: border-color 0.3s ease;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cream);
+  transform: translateX(-101%);
+  transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: 0;
+}
+
+.hero-cta:hover::before {
+  transform: translateX(0);
+}
+
+.hero-cta:hover {
+  color: var(--obsidian);
+  border-color: var(--cream);
+}
+
+.hero-cta span,
+.hero-cta svg {
+  position: relative;
+  z-index: 1;
+  transition: color 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.hero-cta svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* small animated scroll indicator */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--space-lg);
+  right: var(--space-xl);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0; /* GSAP fades in */
+}
+
+.hero-scroll-hint span {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(240, 237, 229, 0.5);
+  writing-mode: vertical-rl;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(201, 168, 76, 0.7), transparent);
+  animation: scrollLinePulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollLinePulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-wrap { transform: none !important; }
+  .hero-tagline     { visibility: visible !important; }
+  .hero-subtitle,
+  .hero-cta,
+  .hero-scroll-hint { opacity: 1 !important; }
+  .hero-scroll-line { animation: none; }
+}
