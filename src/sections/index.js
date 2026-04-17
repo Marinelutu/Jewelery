@@ -10,13 +10,15 @@
  * ... etc
  */
 
-import { initPreloader } from './preloader/preloader.js'
-import { initNav }       from './nav/nav.js'
-import { initHero }      from './hero/hero.js'
+import { initPreloader }  from './preloader/preloader.js'
+import { initNav }        from './nav/nav.js'
+import { initHero }       from './hero/hero.js'
+import { initPhilosophy } from './philosophy/philosophy.js'
 
 export function initSections() {
   initPreloader()
   initNav()
   initHero()
-  console.log('[sections] Phase 2 ✓ — Hero registered')
+  initPhilosophy()
+  console.log('[sections] Phase 3 ✓ — Philosophy registered')
 }
