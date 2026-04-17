@@ -1,0 +1,101 @@
+/**
+ * KOVA JEWELRY — collections.css
+ * ─────────────────────────────────────────────
+ * Phase 6 & 7 — Collections Carousel ×2 (Sections 05–06)
+ */
+
+.collections-section {
+  position: relative;
+  width: 100vw;
+  /* height will be dynamic, but min is needed. GSAP ScrollTrigger needs room */
+  background-color: var(--dynamic-bg, var(--cream)); 
+  color: var(--dynamic-text, var(--obsidian));
+  transition: background-color 0.8s ease, color 0.8s ease;
+  overflow: hidden;
+}
+
+.collections-section[data-theme="obsidian"] {
+  --dynamic-bg: var(--obsidian);
+  --dynamic-text: var(--cream);
+}
+
+.collections-pin-wrap {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xl);
+}
+
+/* Header inside pinning */
+.collections-header {
+  position: absolute;
+  top: 15vh;
+  left: var(--space-xl);
+  z-index: 10;
+  max-width: 400px;
+}
+
+.collections-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-5xl);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+}
+
+.collections-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.collections-track {
+  display: flex;
+  gap: var(--space-xl);
+  /* The track is wide. We flex it. */
+  width: max-content;
+  /* Push track to the right a bit so it starts after the title */
+  padding-left: clamp(400px, 40vw, 600px);
+  padding-right: var(--space-xl);
+  /* cursor will be custom */
+  cursor: none; 
+}
+
+.collection-card {
+  position: relative;
+  width: clamp(280px, 30vw, 400px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--obsidian);
+}
+
+/* Give obsidian cards a cream fallback background to see image edges clearly if padding exists */
+.collections-section[data-theme="obsidian"] .collection-card {
+  background: var(--cream);
+}
+
+.collection-img-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.collection-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* scaling slightly to allow parallax room */
+  transform: scale(1.1);
+  will-change: transform;
+}
+
+/* Add an overlay to catch mouse events for the cursor easily */
+.collections-hover-zone {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 20;
+}

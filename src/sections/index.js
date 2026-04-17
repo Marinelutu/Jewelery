@@ -16,6 +16,7 @@ import { initHero }       from './hero/hero.js'
 import { initPhilosophy } from './philosophy/philosophy.js'
 import { initThePiece }   from './the-piece/the-piece.js'
 import { initFeaturedPiece } from './featured-piece/featured-piece.js'
+import { initCollections } from './collections/collections.js'
 
 export function initSections() {
   initPreloader()
@@ -24,5 +25,6 @@ export function initSections() {
   initPhilosophy()
   initThePiece()
   initFeaturedPiece()
-  console.log('[sections] Phase 5 ✓ — Featured Piece registered')
+  initCollections()
+  console.log('[sections] Phase 6 & 7 ✓ — Collections Carousels registered')
 }
