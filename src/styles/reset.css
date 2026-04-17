@@ -20,6 +20,7 @@ html {
   /* Prevent font-size inflation on mobile */
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
+  text-size-adjust: none;
   /* Smooth anchor scrolling — Lenis will override scroll behaviour */
   scroll-behavior: auto;
 }
