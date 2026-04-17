@@ -44,23 +44,34 @@ export function initHero() {
     gsap.set(videoWrap, { scale: 1.1 })
   }
 
-  /* ── 2. Split tagline into lines for masked stagger ── */
-  let split = null
-  if (tagline) {
-    split = new SplitType(tagline, { types: 'lines' })
+  /* ── 2. Split tagline and subtitle into lines for masked stagger ── */
+  let taglineSplit = null
+  let subtitleSplit = null
 
-    // Wrap each line in an overflow:hidden mask
-    split.lines.forEach((line) => {
+  if (tagline) {
+    taglineSplit = new SplitType(tagline, { types: 'lines' })
+    taglineSplit.lines.forEach((line) => {
       const mask = document.createElement('div')
       mask.style.overflow = 'hidden'
       mask.style.display  = 'block'
       line.parentNode.insertBefore(mask, line)
       mask.appendChild(line)
     })
-
-    // Start lines pushed down out of their masks
-    gsap.set(split.lines, { yPercent: 110 })
+    gsap.set(taglineSplit.lines, { yPercent: 110 })
     tagline.style.visibility = 'visible'
+  }
+
+  if (subtitle) {
+    subtitleSplit = new SplitType(subtitle, { types: 'lines' })
+    subtitleSplit.lines.forEach((line) => {
+      const mask = document.createElement('div')
+      mask.style.overflow = 'hidden'
+      mask.style.display  = 'block'
+      line.parentNode.insertBefore(mask, line)
+      mask.appendChild(line)
+    })
+    gsap.set(subtitleSplit.lines, { yPercent: 110 })
+    subtitle.style.visibility = 'visible'
   }
 
   /* ── 3. Entrance timeline — fires on preloader:complete ── */
@@ -68,8 +79,8 @@ export function initHero() {
     const tl = gsap.timeline()
 
     // Tagline: each line slides up
-    if (split?.lines?.length) {
-      tl.to(split.lines, {
+    if (taglineSplit?.lines?.length) {
+      tl.to(taglineSplit.lines, {
         yPercent:  0,
         duration:  1.2,
         ease:      'power4.out',
@@ -77,24 +88,27 @@ export function initHero() {
       }, 0)
     }
 
-    // Subtitle fades in
-    if (subtitle) {
-      tl.to(subtitle, {
-        opacity:  1,
-        y:        0,
-        duration: 0.9,
-        ease:     'power3.out',
-      }, 0.3)
+    // Subtitle: each line slides up
+    if (subtitleSplit?.lines?.length) {
+      tl.to(subtitleSplit.lines, {
+        yPercent:  0,
+        duration:  1.1,
+        ease:      'power3.out',
+        stagger:   0.1,
+      }, 0.4) // Slightly delayed after tagline starts
     }
 
-    // CTA fades in
+    // CTA fades in + slides up
     if (cta) {
-      tl.to(cta, {
+      tl.fromTo(cta, {
+        opacity:  0,
+        y:        30,
+      }, {
         opacity:  1,
         y:        0,
-        duration: 0.9,
+        duration: 1.2,
         ease:     'power3.out',
-      }, 0.5)
+      }, 0.7)
     }
 
     // Scroll hint appears last
@@ -103,7 +117,7 @@ export function initHero() {
         opacity:  1,
         duration: 0.7,
         ease:     'power2.out',
-      }, 0.9)
+      }, 1.2)
     }
   }
 

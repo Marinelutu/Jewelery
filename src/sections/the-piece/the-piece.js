@@ -9,6 +9,12 @@ export function initThePiece() {
   const blocks = gsap.utils.toArray(section.querySelectorAll('.copy-block'))
   const img = section.querySelector('.piece-img')
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) {
+    gsap.set(blocks, { autoAlpha: 1 })
+    return
+  }
+
   // 1. Pin the jewelry image to the center of the viewport
   // It will unpin once the bottom of `#the-piece` hits the bottom of the viewport
   ScrollTrigger.create({
@@ -17,6 +23,7 @@ export function initThePiece() {
     end: 'bottom bottom',
     pin: stickyEl,
     scrub: true,
+    anticipatePin: 1,
   })
 
   // 2. Slow rotation of the jewellery image across the section's scroll

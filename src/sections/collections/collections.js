@@ -14,6 +14,9 @@ export function initCollections() {
   
   if (!sections.length) return
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) return
+
   sections.forEach((section) => {
     const pinWrap = section.querySelector('.collections-pin-wrap')
     const track = section.querySelector('.collections-track')
@@ -21,8 +24,9 @@ export function initCollections() {
     const theme = section.dataset.theme
 
     // Add extra scroll distance for dragging effect
-    const number_of_cards = cards.length
-    section.style.height = `${(number_of_cards * 100)}vh`
+    // We now have cards.length + 1 (the header slide)
+    const totalSlides = cards.length + 1
+    section.style.height = `${(totalSlides * 100)}vh`
 
     // Horizontal Scroll
     const getScrollAmount = () => {
@@ -38,7 +42,7 @@ export function initCollections() {
     ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: () => `+=${(number_of_cards * 100) * (window.innerHeight / 100)}`,
+      end: () => `+=${(totalSlides * window.innerHeight)}`,
       pin: pinWrap,
       animation: tween,
       scrub: 1,

@@ -18,6 +18,21 @@ export function initProcess() {
   const section = document.querySelector('.process-section');
   if (!section) return;
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    const line = section.querySelector('.process-line');
+    if (line) gsap.set(line, { scaleX: 1, scaleY: 1 });
+    
+    const steps = section.querySelectorAll('.process-step');
+    steps.forEach((step) => {
+      const imgWrap = step.querySelector('.step-img-wrap');
+      if (imgWrap) gsap.set(imgWrap, { clipPath: 'inset(0 0% 0 0)' });
+      const numberEl = step.querySelector('.step-number');
+      if (numberEl) gsap.set(numberEl, { autoAlpha: 1, scale: 1 });
+    });
+    return;
+  }
+
   // 1. Title masked stagger
   splitReveal('.process-title');
   splitReveal('.process-subtitle', {}, { delay: 0.2 });

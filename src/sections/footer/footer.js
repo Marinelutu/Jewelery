@@ -25,6 +25,23 @@ export function initFooter() {
 
   if (!footer || !spacer || !emailSection) return;
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    const logo = footer.querySelector('.footer-logo');
+    if (logo) gsap.set(logo, { autoAlpha: 1, scale: 1, y: 0 });
+    const links = footer.querySelectorAll('.footer-link');
+    if (links.length) gsap.set(links, { autoAlpha: 1, y: 0 });
+    const divider = footer.querySelector('.footer-divider');
+    if (divider) gsap.set(divider, { scaleX: 1 });
+    const socialItems = footer.querySelectorAll('.footer-social-link, .footer-copy');
+    if (socialItems.length) gsap.set(socialItems, { autoAlpha: 1, y: 0 });
+    
+    footer.style.position = 'relative';
+    footer.style.zIndex = '1';
+    spacer.style.display = 'none';
+    return;
+  }
+
   // 1. Curtain reveal — email section lifts up to reveal footer
   // Ensure we move it enough even if content is tall
   ScrollTrigger.create({

@@ -26,24 +26,30 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 0 var(--space-xl);
+  padding: 0;
 }
 
-/* Header inside pinning */
+/* Header inside pinning — now acting as 'Slide 0' in the flex track */
 .collections-header {
-  position: absolute;
-  top: 15vh;
-  left: var(--space-xl);
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--space-xl);
   z-index: 10;
-  max-width: 400px;
 }
 
 .collections-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: var(--text-5xl);
-  line-height: 1.1;
+  font-size: var(--text-3xl);
+  line-height: 1.0;
   font-weight: 400;
   margin-bottom: var(--space-sm);
+  text-transform: capitalize;
 }
 
 .collections-desc {
@@ -51,6 +57,7 @@
   font-size: var(--text-base);
   font-weight: 300;
   opacity: 0.8;
+  max-width: 400px;
 }
 
 .collections-track {
@@ -58,8 +65,8 @@
   gap: var(--space-xl);
   /* The track is wide. We flex it. */
   width: max-content;
-  /* Push track to the right a bit so it starts after the title */
-  padding-left: clamp(400px, 40vw, 600px);
+  /* Remove padding-left now that the header is in-track */
+  padding-left: 0;
   padding-right: var(--space-xl);
   /* cursor will be custom */
   cursor: none; 

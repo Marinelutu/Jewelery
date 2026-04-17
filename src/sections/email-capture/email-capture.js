@@ -19,8 +19,13 @@ export function initEmailCapture() {
   const section = document.querySelector('.email-section');
   if (!section) return;
 
-  // 1. Clip-path reveal on scroll entry
-  gsap.to(section, {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    gsap.set(section, { clipPath: 'inset(0% 0%)' });
+    // Note: splitReveal and fadeIn inside this function handle their own reduces motion checks
+  } else {
+    // 1. Clip-path reveal on scroll entry
+    gsap.to(section, {
     clipPath: 'inset(0% 0%)',
     duration: 1.4,
     ease: 'power3.out',
@@ -30,6 +35,7 @@ export function initEmailCapture() {
       toggleActions: 'play none none none',
     },
   });
+  }
 
   // 2. Title masked stagger
   splitReveal('.email-title', { trigger: section, start: 'top 70%' }, { delay: 0.3 });

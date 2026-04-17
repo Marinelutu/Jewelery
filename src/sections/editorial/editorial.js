@@ -9,6 +9,15 @@ export function initEditorialGrid() {
   // 2. Handle Image Reveal & Parallax
   const items = document.querySelectorAll('.editorial-item');
   
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    items.forEach(item => {
+      const wrap = item.querySelector('.editorial-img-wrap');
+      if (wrap) gsap.set(wrap, { autoAlpha: 1, scale: 1 });
+    });
+    return;
+  }
+  
   items.forEach(item => {
     const wrap = item.querySelector('.editorial-img-wrap');
     if (!wrap) return;
